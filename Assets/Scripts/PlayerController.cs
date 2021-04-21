@@ -45,11 +45,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public PlayerId getId() {
+    public PlayerId GetId() {
         return playerId;
     }
 
-    public Vector2 getPosition() {
+    public Vector2 GetPosition() {
         return transform.position;
     }
 }

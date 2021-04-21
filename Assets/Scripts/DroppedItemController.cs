@@ -29,7 +29,9 @@ public class DroppedItemController : MonoBehaviour
     }
 
     private void MoveTowardsTarget() {
-        transform.position = Vector2.MoveTowards(transform.position, targetPlayer.getPosition(), speed * Time.fixedDeltaTime);
+        Vector2 targetPlayerPosition = targetPlayer.GetPosition();
+        float adjustedSpeed = (speed - 1) + Mathf.Pow(2, speed /  Vector2.Distance(transform.position, targetPlayerPosition));
+        transform.position = Vector2.MoveTowards(transform.position, targetPlayerPosition, adjustedSpeed * Time.fixedDeltaTime);
     }
 
     private void setTarget(PlayerController playerController) {
@@ -39,7 +41,7 @@ public class DroppedItemController : MonoBehaviour
     }
 
     private void removeTarget(PlayerController playerController) {
-        if (targetPlayer != null && targetPlayer.getId() == playerController.getId()) {
+        if (targetPlayer != null && targetPlayer.GetId() == playerController.GetId()) {
             targetPlayer = null;
         }
     }
