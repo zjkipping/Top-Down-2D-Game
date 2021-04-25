@@ -12,6 +12,10 @@ public class InventoryController : MonoBehaviour
         inventory = new Storage(type);
     }
 
+    public bool CanFitInInventory(ItemUtil.ItemId id, int amount) {
+        return inventory.CanItemFit(id, amount);
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == EntityTags.StorageContainer && targetStorageContainerController == null) {
             targetStorageContainerController = other.GetComponent<StorageContainerController>();
@@ -36,16 +40,19 @@ public class InventoryController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == EntityTags.DroppedItem) {
             if (Vector2.Distance(transform.position, other.transform.position) < 0.5f) {
-                DroppedItemController droppedItem = other.GetComponent<DroppedItemController>();
-                droppedItem.CollectItem(out ItemUtil.ItemId itemId, out int itemAmount);
-                var updatedItemAmount = inventory.AddItem(itemId, itemAmount);
-                if (updatedItemAmount > 0) {
-                    droppedItem.UpdateAmount(updatedItemAmount);
-                    droppedItem.RemoveCurrentTarget();
-                } else {
-                    droppedItem.DestroyObject();
-                }
+                AttemptItemCollection(other.GetComponent<DroppedItemController>());
             }
+        }
+    }
+
+    private void AttemptItemCollection(DroppedItemController droppedItem) {
+        droppedItem.CollectItem(out ItemUtil.ItemId itemId, out int itemAmount);
+        var updatedItemAmount = inventory.AddItem(itemId, itemAmount);
+        if (updatedItemAmount > 0) {
+            droppedItem.UpdateAmount(updatedItemAmount);
+            droppedItem.RemoveCurrentTarget();
+        } else {
+            droppedItem.DestroyObject();
         }
     }
 }

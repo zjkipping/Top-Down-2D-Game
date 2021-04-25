@@ -3,8 +3,7 @@ public class StorageItem {
     private int amount;
 
     public StorageItem() {
-        id = ItemUtil.ItemId.None;
-        amount = 0;
+        SetEmpty();
     }
 
     public StorageItem(ItemUtil.ItemId id, int amount) {
@@ -30,5 +29,10 @@ public class StorageItem {
 
     public int GetItemAmount() {
         return amount;
+    }
+
+    public void SetEmpty() {
+        id = ItemUtil.ItemId.None;
+        amount = 0;
     }
 }

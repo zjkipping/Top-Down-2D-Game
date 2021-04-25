@@ -21,7 +21,10 @@ public class DroppedItemController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.tag == EntityTags.Player) {
-            SetTarget(other.gameObject.GetComponent<PlayerController>());
+            InventoryController inventoryController = other.gameObject.GetComponent<InventoryController>();
+            if (inventoryController.CanFitInInventory(itemId, amount)) {
+                SetTarget(other.gameObject.GetComponent<PlayerController>());
+            }
         }
     }
 
