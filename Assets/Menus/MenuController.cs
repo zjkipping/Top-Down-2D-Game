@@ -7,11 +7,14 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private bool pauseTimeWhenOpen = true;
 
-    private void Start()
+    private void Awake()
     {
         if (!menuUI) {
             menuUI = GetComponent<Canvas>();
         }
+    }
+
+    private void Start() {
         menuUI.enabled = false;
     }
 

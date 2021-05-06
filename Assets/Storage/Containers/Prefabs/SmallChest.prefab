@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8262769866391254647}
   - component: {fileID: 8262769866391254646}
   m_Layer: 0
-  m_Name: Chest
+  m_Name: SmallChest
   m_TagString: StorageContainer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -188,8 +188,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8262769866391254606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09499e4fc71913a40b6b5ce4085d2506, type: 3}
+  m_Script: {fileID: 11500000, guid: f5aed0e4279209f40804af145ae7c1b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storageId: 1231asd
-  type: 0
+  storageObject: {fileID: 11400000, guid: b1105cf36d01d9d4994499f7bc29446f, type: 2}

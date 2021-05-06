@@ -1,4 +1,4 @@
-public enum StorageType {
+public enum StorageSize {
     Debug,
     Small,
     Medium,

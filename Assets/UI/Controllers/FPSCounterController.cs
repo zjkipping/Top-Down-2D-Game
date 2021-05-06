@@ -13,7 +13,7 @@ public class FPSCounterController : MonoBehaviour
     private ArrayList lastTenFPS = new ArrayList();
     private float averageFPS;
 
-    private void Start()
+    private void Awake()
     {
         if (!fpsCounterText) {
             fpsCounterText = GetComponent<Text>();

@@ -20,12 +20,14 @@ public class CameraSizeController : MonoBehaviour
 
     private float zoomAmount = 0;
 
-    private void Start()
-    {
+    private void Awake() {
         if (!cam) {
             cam = GetComponent<Camera>();
         }
+    }
 
+    private void Start()
+    {
         UpdateCachedResolution();
         CalculateBaseOrthographicSize();
         UpdateCameraSize();

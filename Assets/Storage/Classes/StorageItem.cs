@@ -1,38 +1,12 @@
-using UnityEngine;
-
 public class StorageItem {
     private ItemObject item;
     private int amount;
 
-    public ItemId ItemId {
-        get {
-            return item.ItemId;
-        } 
-    }
-
-    public ItemType ItemType {
-        get {
-            return item.ItemType;
-        } 
-    }
-
-    public int MaxAmount {
-        get {
-            return item.MaxAmount;
-        }
-    }
-
-    public Texture2D Texture {
-        get {
-            return item.Texture;
-        } 
-    }
-
-    public int Amount {
-        get {
-            return amount;
-        }
-    }
+    public ItemObject Item { get { return item; } }
+    public int Amount { get { return amount; } }
+    public ItemId ItemId { get { return item.ItemId; } }
+    public ItemType ItemType { get { return item.ItemType; } }
+    public int MaxAmount { get { return item.MaxAmount; } }
 
     public StorageItem(ItemObject _item, int _amount) {
         item = _item;

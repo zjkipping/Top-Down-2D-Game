@@ -23,8 +23,7 @@ public class CameraPositionController : MonoBehaviour
     [SerializeField]
     private float wallOffset = 0.5f;
 
-    private void Start()
-    {
+    private void Awake() {
         if (!cam) {
             cam = GetComponent<Camera>();
         }

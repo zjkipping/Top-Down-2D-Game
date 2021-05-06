@@ -15,13 +15,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private MovementController movementController;
 
-    private void Start()
+    private void Awake()
     {
         if (!movementController) {
             movementController = GetComponent<MovementController>();
-            movementController.ChangeMovement(Vector2.zero);
-            movementController.ChangeSpeed(walkSpeed);
         }
+    }
+
+    private void Start() {
+        movementController.ChangeMovement(Vector2.zero);
+        movementController.ChangeSpeed(walkSpeed);
     }
 
     private void OnMovement(InputValue input) {

@@ -10,7 +10,7 @@ public class MovementController : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
 
-    private void Start()
+    private void Awake()
     {
         if (!rb) {
             rb = GetComponent<Rigidbody2D>();

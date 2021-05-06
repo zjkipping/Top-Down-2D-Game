@@ -1,31 +1,18 @@
 using System.Linq;
 
 public class Storage {
-    private StorageType type;
-    private int totalSpace;
-    private int availableSpace;
+    private StorageObject storageObject;
     private StorageItem[] items;
+    private int availableSpace;
 
-    public Storage(StorageType type) {
-        ChangeType(type);
-    }
-
-    public void ChangeType(StorageType newType) {
-        type = newType;
-        StorageUtil.StorageSpaces.TryGetValue(type, out totalSpace);
-        StorageItem[] newItems = new StorageItem[totalSpace];
-        if (items != null) {
-            int lesserStorageAmount = items.Length < newItems.Length ? items.Length : newItems.Length;
-            for(int i = 0; i < lesserStorageAmount; i++) {
-                newItems[i] = items[i];
-            }
-        }
-        
-        items = newItems;
+    public Storage(StorageObject _storageObject) {
+        storageObject = _storageObject;
+        availableSpace = _storageObject.Spaces;
+        items = new StorageItem[_storageObject.Spaces];
     }
 
     public bool CanItemFit(ItemObject item, int amount) {
-        int existingIndex = items.ToList().FindIndex(i => i.ItemId == item.ItemId && i.Amount < item.MaxAmount);
+        int existingIndex = items.ToList().FindIndex(i => i?.ItemId == item.ItemId && i?.Amount < item.MaxAmount);
         if (existingIndex > -1) {
             StorageItem existingSpace = items[existingIndex];
             if (existingSpace.Amount < item.MaxAmount) {
@@ -38,8 +25,22 @@ public class Storage {
         return false;
     }
 
+    public int GetTotalItemAmount(ItemObject item) {
+        int foundAmount = 0;
+        for (int i = 0; i < items.Length; i++) {
+            if (items[i]?.ItemId == item.ItemId) {
+                foundAmount += items[i].Amount;
+            }
+        }
+        return foundAmount;
+    }
+
+    public bool ContainsItemAmount(ItemObject item, int amount) {
+        return GetTotalItemAmount(item) >= amount;
+    }
+
     public int AddItem(ItemObject item, int amount) {
-        StorageItem storageItem = items.FirstOrDefault(i => i.ItemId == item.ItemId && i.Amount < item.MaxAmount);
+        StorageItem storageItem = items.FirstOrDefault(i => i?.ItemId == item.ItemId && i?.Amount < item.MaxAmount);
         if (storageItem != null) {
             if (storageItem.Amount + amount > storageItem.MaxAmount) {
                 int incrementAmount = storageItem.MaxAmount - storageItem.Amount;
@@ -52,8 +53,13 @@ public class Storage {
         } else {
             int firstAvailableSpace = items.ToList().FindIndex(i => i  == null);
             if (firstAvailableSpace > -1) {
-                items[firstAvailableSpace] = new StorageItem(item, amount);
-                return 0;
+                if (item.MaxAmount < amount) {
+                    items[firstAvailableSpace] = new StorageItem(item, item.MaxAmount);
+                    return AddItem(item, amount - item.MaxAmount);
+                } else {
+                    items[firstAvailableSpace] = new StorageItem(item, amount);
+                    return 0;
+                }
             } else {
                 return amount;
             }
@@ -62,7 +68,15 @@ public class Storage {
 
     public int AddItem(ItemObject item, int amount, int space) {
         StorageItem storageItem = items[space];
-        if (storageItem.ItemId == item.ItemId) {
+        if (storageItem == null) {
+            if (item.MaxAmount < amount) {
+                items[space] = new StorageItem(item, item.MaxAmount);
+                return amount - item.MaxAmount;
+            } else {
+                items[space] = new StorageItem(item, amount);
+                return 0;
+            }
+        } else if (storageItem.ItemId == item.ItemId) {
             if (storageItem.Amount + amount > storageItem.MaxAmount) {
                 int incrementAmount = storageItem.MaxAmount - storageItem.Amount;
                 storageItem.IncrementAmount(incrementAmount);
@@ -76,23 +90,9 @@ public class Storage {
         }
     }
 
-    public int GetTotalItemAmount(ItemObject item) {
-        int foundAmount = 0;
-        for (int i = 0; i < items.Length; i++) {
-            if (items[i].ItemId == item.ItemId) {
-                foundAmount += items[i].Amount;
-            }
-        }
-        return foundAmount;
-    }
-
-    public bool ContainsItemAmount(ItemObject item, int amount) {
-        return GetTotalItemAmount(item) >= amount;
-    }
-
     public int RemoveItem(ItemObject item, int amount) {
         if (amount != 0) {
-            int storageItemIndex = items.ToList().FindIndex(i => i.ItemId == item.ItemId);
+            int storageItemIndex = items.ToList().FindIndex(i => i?.ItemId == item.ItemId);
             if (storageItemIndex > -1) {
                 StorageItem storageItem = items[storageItemIndex];
                 if (storageItem.Amount <= amount) {
@@ -109,7 +109,7 @@ public class Storage {
 
     public int RemoveItem(ItemObject item, int amount, int space) {
         StorageItem storageItem = items[space];
-        if (storageItem.ItemId == item.ItemId) {
+        if (storageItem != null && storageItem.ItemId == item.ItemId) {
             if (storageItem.Amount <= amount ) {
                 items[space] =  null;
                 return amount - storageItem.Amount;
@@ -119,5 +119,11 @@ public class Storage {
             }
         }
         return amount;
+    }
+
+    public int ReplaceSpaceItem(ItemObject item, int amount, int space) {
+        int storageAmount = amount > item.MaxAmount ? item.MaxAmount : amount;
+        items[space] = new StorageItem(item, storageAmount);
+        return amount - storageAmount;
     }
 }

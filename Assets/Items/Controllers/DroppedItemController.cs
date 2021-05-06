@@ -13,6 +13,10 @@ public class DroppedItemController : MonoBehaviour
 
     private PlayerController targetPlayer = null;
 
+    public void Initialize(int _amount) {
+        amount = _amount;
+    }
+
     private void FixedUpdate() {
         if (targetPlayer != null) {
             MoveTowardsTarget();

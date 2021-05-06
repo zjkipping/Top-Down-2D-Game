@@ -5,7 +5,7 @@ public class PauseMenuController : MonoBehaviour
     [SerializeField]
     private MenuController menuController;
 
-    private void Start()
+    private void Awake()
     {
         if (!menuController) {
             menuController = GetComponent<MenuController>();

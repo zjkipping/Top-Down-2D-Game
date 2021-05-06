@@ -3,7 +3,7 @@ using UnityEngine;
 public class StorageContainerController : MonoBehaviour
 {
     [SerializeField]
-    private StorageType type;
+    private StorageObject storageObject;
 
     private string storageId;
     private Storage storage;
@@ -11,7 +11,7 @@ public class StorageContainerController : MonoBehaviour
 
     private void Awake() {
         storageId = UniqueId.generateId();
-        storage = new Storage(type);
+        storage = new Storage(storageObject);
     }
 
     public void Open(Storage inventory) {

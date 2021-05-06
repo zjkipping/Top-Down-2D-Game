@@ -3,13 +3,13 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     [SerializeField]
-    private StorageType type;
+    private StorageObject storageObject;
 
     private StorageContainerController targetStorageContainerController = null;
     private Storage inventory;
 
-    private void Start() {
-        inventory = new Storage(type);
+    private void Awake() {
+        inventory = new Storage(storageObject);
     }
 
     public bool CanFitInInventory(ItemObject item, int amount) {
