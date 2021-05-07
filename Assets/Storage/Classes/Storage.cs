@@ -1,13 +1,14 @@
+using System.Collections.Generic;
 using System.Linq;
 
 public class Storage {
     private StorageObject storageObject;
     private StorageItem[] items;
-    private int availableSpace;
+
+    public List<StorageItem> Items { get { return items.ToList(); } }
 
     public Storage(StorageObject _storageObject) {
         storageObject = _storageObject;
-        availableSpace = _storageObject.Spaces;
         items = new StorageItem[_storageObject.Spaces];
     }
 

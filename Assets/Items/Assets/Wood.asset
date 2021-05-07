@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 431320d3b0bea414887204a60cee10aa, type: 3}
-  m_Name: TestItem
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   type: 0
-  maxAmount: 10
-  sprite: {fileID: 21300000, guid: b8cd7dd57ad476043bb907d11a62f867, type: 3}
-  droppedItemPrefab: {fileID: 252256127696191454, guid: 701dba1f41fbd384ebb0cb56add32427, type: 3}
+  maxAmount: 200
+  sprite: {fileID: 21300000, guid: 80940af040c475048b31e5b81fbfcde3, type: 3}
+  droppedItemPrefab: {fileID: 3558014302234266111, guid: cd1d0d8619c1634448cf5b9d78b05095, type: 3}

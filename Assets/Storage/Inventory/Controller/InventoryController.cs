@@ -5,11 +5,18 @@ public class InventoryController : MonoBehaviour
     [SerializeField]
     private StorageObject storageObject;
 
+    [SerializeField]
+    private HotbarController hotbar;
+
     private StorageContainerController targetStorageContainerController = null;
     private Storage inventory;
 
+    private int hotbarRow = 0;
+    private int selectedHotbarSlot = 0;
+
     private void Awake() {
         inventory = new Storage(storageObject);
+        InventoryUpdated();
     }
 
     public bool CanFitInInventory(ItemObject item, int amount) {
@@ -47,11 +54,19 @@ public class InventoryController : MonoBehaviour
 
     private void AttemptItemCollection(DroppedItemController droppedItem) {
         int updatedItemAmount = inventory.AddItem(droppedItem.GetItem(), droppedItem.GetAmount());
+        InventoryUpdated();
         if (updatedItemAmount > 0) {
             droppedItem.UpdateAmount(updatedItemAmount);
             droppedItem.RemoveCurrentTarget();
         } else {
             droppedItem.DestroyObject();
         }
+    }
+
+    private void InventoryUpdated() {
+        var hotbarItems = new StorageItem[8];
+        inventory.Items.CopyTo(8 * hotbarRow, hotbarItems, 0, 8);
+
+        hotbar.updateItems(hotbarItems);
     }
 }
