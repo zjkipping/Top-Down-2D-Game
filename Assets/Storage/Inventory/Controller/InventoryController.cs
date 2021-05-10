@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
@@ -16,7 +17,11 @@ public class InventoryController : MonoBehaviour
 
     private void Awake() {
         inventory = new Storage(storageObject);
+    }
+
+    private void Start() {
         InventoryUpdated();
+        SelectSlot(0);
     }
 
     public bool CanFitInInventory(ItemObject item, int amount) {
@@ -67,6 +72,68 @@ public class InventoryController : MonoBehaviour
         var hotbarItems = new StorageItem[8];
         inventory.Items.CopyTo(8 * hotbarRow, hotbarItems, 0, 8);
 
-        hotbar.updateItems(hotbarItems);
+        hotbar.UpdateItems(hotbarItems);
+    }
+
+    private void SelectSlot(int slotIndex) {
+        selectedHotbarSlot = slotIndex;
+        hotbar.UpdateSelectedSlot(selectedHotbarSlot);
+    }
+
+    private void OnPreviousHotbarSlot() {
+        if (selectedHotbarSlot <= 0) {
+            SelectSlot(7);
+        } else {
+            SelectSlot(selectedHotbarSlot - 1);
+        }
+    }
+
+    private void OnNextHotbarSlot() {
+        if (selectedHotbarSlot >= 7) {
+            SelectSlot(0);
+        } else {
+            SelectSlot(selectedHotbarSlot + 1);
+        }
+    }
+
+    private void OnScrollHotbar(InputValue input) {
+        float value = input.Get<float>();
+        if (value > 0) {
+            OnPreviousHotbarSlot();
+        } else if (value < 0) {
+            OnNextHotbarSlot();
+        }
+    }
+
+    private void OnHotbarSlot1() {
+        SelectSlot(0);
+    }
+
+    private void OnHotbarSlot2() {
+        SelectSlot(1);
+    }
+
+    private void OnHotbarSlot3() {
+        SelectSlot(2);
+    }
+
+    private void OnHotbarSlot4() {
+        SelectSlot(3);
+    }
+
+    private void OnHotbarSlot5() {
+        SelectSlot(4);
+    }
+
+    private void OnHotbarSlot6() {
+        SelectSlot(5);
+    }
+
+    private void OnHotbarSlot7() {
+        SelectSlot(6);
+    }
+
+    private void OnHotbarSlot8() {
+        SelectSlot(7);
     }
 }

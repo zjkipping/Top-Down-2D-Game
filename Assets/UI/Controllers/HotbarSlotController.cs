@@ -39,10 +39,10 @@ public class HotbarSlotController : MonoBehaviour
     }
 
     public void Select() {
-        highlightImage.enabled = true;
+        highlightImage.color = Color.white;
     }
 
     public void Deselect() {
-        highlightImage.enabled = false;
+        highlightImage.color = Color.clear;
     }
 }

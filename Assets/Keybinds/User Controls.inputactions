@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "3fdb197c-d34f-4257-bff3-5566e88815cc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Sprint",
                     "type": "Value",
                     "id": "896c023f-859a-4b77-a2c1-cdca432aa29b",
@@ -22,10 +30,90 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Interact",
+                    "name": "Hotbar Slot 1",
                     "type": "Button",
-                    "id": "3fdb197c-d34f-4257-bff3-5566e88815cc",
+                    "id": "d0224628-ae66-4538-8e6f-b00bc644f7ba",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 2",
+                    "type": "Button",
+                    "id": "f936f657-bf50-4b91-80f7-9d4ce4b4034d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 3",
+                    "type": "Button",
+                    "id": "0747f381-d0a9-43d8-932d-81a328608eaa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 4",
+                    "type": "Button",
+                    "id": "68c3b876-c866-480e-844a-bdd40f453d70",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 5",
+                    "type": "Button",
+                    "id": "97df4f40-c6b3-45de-b51f-655cfa7a13ac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 6",
+                    "type": "Button",
+                    "id": "67b6b710-9e58-4454-8af0-c5211f6de4a5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 7",
+                    "type": "Button",
+                    "id": "57bf0c66-0a7f-4224-92f4-8c16846d6923",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Hotbar Slot 8",
+                    "type": "Button",
+                    "id": "9ecc73f1-f14b-4565-88e3-2f52f74cf00b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Previous Hotbar Slot",
+                    "type": "Button",
+                    "id": "cbc32102-4ccd-4c61-8f99-4468bc18758d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Next Hotbar Slot",
+                    "type": "Button",
+                    "id": "23cf769f-df6b-4d9f-b38f-8ee8cc30bab7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Scroll Hotbar",
+                    "type": "PassThrough",
+                    "id": "b6b9c79e-f7ae-40ce-ba1b-77cea9e646aa",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
                 }
@@ -143,6 +231,116 @@
                 },
                 {
                     "name": "",
+                    "id": "a4d9c56c-3bb0-439c-a58c-84c2bce07b46",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Next Hotbar Slot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "905ac656-8d89-429a-b207-9fabcec6162f",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Previous Hotbar Slot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9e427cc0-060d-4b6e-bee9-4dd13782105c",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 8",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f9caddb8-eb4e-42af-b9ad-553610878442",
+                    "path": "<Keyboard>/7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 7",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ee4ee82-2a49-4ce1-8704-4a5e4467449d",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 6",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ecd45cb-edf9-4530-8dff-28ad4c6d2e1a",
+                    "path": "<Keyboard>/5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 5",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc76846a-5291-4ca6-9d46-60499d6b89f8",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40d5ecb2-6629-4183-b272-3c8d2553447a",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f933e48-77b8-4341-8e46-d57b1acc6b74",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "830d9e1b-6737-4be6-8645-cbc085ad8ef7",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hotbar Slot 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "ed3b4306-aaec-44c3-a27b-ccfc11d52071",
                     "path": "<Keyboard>/leftShift",
                     "interactions": "",
@@ -182,6 +380,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4ccf114-067b-4937-ac7f-8bcf217213c7",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Scroll Hotbar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
