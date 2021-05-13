@@ -12,10 +12,6 @@ public class HotbarSlotController : MonoBehaviour
     [SerializeField]
     private Text keybindText;
 
-    private void Start() {
-        Deselect();
-    }
-
     public void UpdateItem(Sprite item) {
         itemImage.sprite = item;
         itemImage.color = Color.white;

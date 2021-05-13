@@ -5,7 +5,7 @@ public class PlaceableObject : ItemObject {
     [SerializeField]
     private GameObject placedItemPrefab;
 
-    public GameObject PlacedItemPrefab { get { return placedItemPrefab; } }
+    public GameObject PlacedItemPrefab => placedItemPrefab;
 
     private void Awake() {
         type = ItemType.Placeable;

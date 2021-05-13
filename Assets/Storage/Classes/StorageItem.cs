@@ -1,12 +1,13 @@
+[System.Serializable]
 public class StorageItem {
     private ItemObject item;
     private int amount;
 
-    public ItemObject Item { get { return item; } }
-    public int Amount { get { return amount; } }
-    public ItemId ItemId { get { return item.ItemId; } }
-    public ItemType ItemType { get { return item.ItemType; } }
-    public int MaxAmount { get { return item.MaxAmount; } }
+    public ItemObject Item => item;
+    public int Amount => amount;
+    public ItemId ItemId => item.ItemId;
+    public ItemType ItemType => item.ItemType;
+    public int MaxAmount => item.MaxAmount;
 
     public StorageItem(ItemObject _item, int _amount) {
         item = _item;

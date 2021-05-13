@@ -12,9 +12,9 @@ public abstract class ItemObject : ScriptableObject {
     [SerializeField]
     protected GameObject droppedItemPrefab;
 
-    public ItemId ItemId { get { return id; } }
-    public ItemType ItemType { get { return type; } }
-    public int MaxAmount { get { return maxAmount; } }
-    public Sprite Sprite { get { return sprite; } }
-    public GameObject DroppedItemPrefab { get { return droppedItemPrefab; } }
+    public ItemId ItemId => id;
+    public ItemType ItemType => type;
+    public int MaxAmount => maxAmount;
+    public Sprite Sprite => sprite;
+    public GameObject DroppedItemPrefab => droppedItemPrefab;
 }

@@ -1,15 +1,33 @@
 using System.Collections.Generic;
 using System.Linq;
 
+public delegate void StorageUpdatedEvent();
+
+[System.Serializable]
 public class Storage {
     private StorageObject storageObject;
     private StorageItem[] items;
 
-    public List<StorageItem> Items { get { return items.ToList(); } }
+    public List<StorageItem> Items => items.ToList();
+
+    public event StorageUpdatedEvent StorageUpdated;
 
     public Storage(StorageObject _storageObject) {
         storageObject = _storageObject;
         items = new StorageItem[_storageObject.Spaces];
+        OnStorageUpdated();
+    }
+
+    public int GetTotalSpaces() {
+        return storageObject.Spaces;
+    }
+
+    public StorageItem GetItemAtIndex(int index) {
+        return items[index];
+    }
+
+    private void OnStorageUpdated() {
+        StorageUpdated?.Invoke();
     }
 
     public bool CanItemFit(ItemObject item, int amount) {
@@ -46,9 +64,11 @@ public class Storage {
             if (storageItem.Amount + amount > storageItem.MaxAmount) {
                 int incrementAmount = storageItem.MaxAmount - storageItem.Amount;
                 storageItem.IncrementAmount(incrementAmount);
+                OnStorageUpdated();
                 return AddItem(item, amount - incrementAmount);
             } else {
                 storageItem.IncrementAmount(amount);
+                OnStorageUpdated();
                 return 0;
             }
         } else {
@@ -56,9 +76,11 @@ public class Storage {
             if (firstAvailableSpace > -1) {
                 if (item.MaxAmount < amount) {
                     items[firstAvailableSpace] = new StorageItem(item, item.MaxAmount);
+                    OnStorageUpdated();
                     return AddItem(item, amount - item.MaxAmount);
                 } else {
                     items[firstAvailableSpace] = new StorageItem(item, amount);
+                    OnStorageUpdated();
                     return 0;
                 }
             } else {
@@ -72,18 +94,22 @@ public class Storage {
         if (storageItem == null) {
             if (item.MaxAmount < amount) {
                 items[space] = new StorageItem(item, item.MaxAmount);
+                OnStorageUpdated();
                 return amount - item.MaxAmount;
             } else {
                 items[space] = new StorageItem(item, amount);
+                OnStorageUpdated();
                 return 0;
             }
         } else if (storageItem.ItemId == item.ItemId) {
             if (storageItem.Amount + amount > storageItem.MaxAmount) {
                 int incrementAmount = storageItem.MaxAmount - storageItem.Amount;
                 storageItem.IncrementAmount(incrementAmount);
+                OnStorageUpdated();
                 return amount - incrementAmount;
             } else {
                 storageItem.IncrementAmount(amount);
+                OnStorageUpdated();
                 return 0;
             }
         } else {
@@ -98,9 +124,11 @@ public class Storage {
                 StorageItem storageItem = items[storageItemIndex];
                 if (storageItem.Amount <= amount) {
                     items[storageItemIndex] = null;
+                    OnStorageUpdated();
                     return RemoveItem(item, amount - storageItem.Amount);
                 } else {
                     storageItem.DecrementAmount(amount);
+                    OnStorageUpdated();
                     return 0;
                 }
             }
@@ -113,9 +141,11 @@ public class Storage {
         if (storageItem != null && storageItem.ItemId == item.ItemId) {
             if (storageItem.Amount <= amount ) {
                 items[space] =  null;
+                OnStorageUpdated();
                 return amount - storageItem.Amount;
             } else {
                 storageItem.DecrementAmount(amount);
+                OnStorageUpdated();
                 return 0;
             }
         }
@@ -125,6 +155,7 @@ public class Storage {
     public int ReplaceSpaceItem(ItemObject item, int amount, int space) {
         int storageAmount = amount > item.MaxAmount ? item.MaxAmount : amount;
         items[space] = new StorageItem(item, storageAmount);
+        OnStorageUpdated();
         return amount - storageAmount;
     }
 }

@@ -7,6 +7,6 @@ public class StorageObject : ScriptableObject {
     [SerializeField]
     protected int spaces;
 
-    public StorageSize Size { get { return size; } }
-    public int Spaces { get { return spaces; } }
+    public StorageSize Size => size;
+    public int Spaces => spaces;
 }
