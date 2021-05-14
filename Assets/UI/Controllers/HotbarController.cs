@@ -148,7 +148,11 @@ public class HotbarController : MonoBehaviour
     }
 
     private void OnDropActiveItem() {
-        inventoryController.DropItem(activeItemIndex);
+        inventoryController.DropItem(activeItemIndex, 1);
+    }
+
+    private void OnDropActiveItemStack() {
+        inventoryController.DropItemStack(activeItemIndex);
     }
 
     private void OnHotbarSlot1() {

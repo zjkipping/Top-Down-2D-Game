@@ -10,10 +10,11 @@ public class DebugItemSpawnerController : MonoBehaviour
     private GameObject player;
 
     private void OnSpawnItem() {
-        int itemPoolIndex = (int)(Random.value * itemPool.Count);
+        int itemPoolIndex =  Random.Range(0, itemPool.Count);
         ItemObject item = itemPool[itemPoolIndex];
-        int amount = (int)(Random.value * (item.MaxAmount - 1)) + 1;
-        Vector3 position = player.transform.position - new Vector3(0, 1.5f, 0);
+        int amount = Random.Range(1, item.MaxAmount);
+        Vector3 direction = new Vector2(Random.Range(-1f, 1f) * 1.5f, Random.Range(-1f, 1f) * 1.5f);
+        Vector3 position = player.transform.position + direction;
         GameObject go = Instantiate(item.DroppedItemPrefab, position, Quaternion.identity);
         go.GetComponent<DroppedItemController>().Initialize(item, amount);
     }

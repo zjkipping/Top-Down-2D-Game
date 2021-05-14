@@ -21,12 +21,21 @@ public class InventoryController : MonoBehaviour
         storage.StorageUpdated += () => inventoryUpdated.Invoke();
     }
     
-    public void DropItem(int inventorySlot) {
+    public void DropItemStack(int inventorySlot) {
         StorageItem storageItem = storage.RemoveItem(inventorySlot);
         if (storageItem != null) {
             Vector3 playerPosition = gameObject.transform.position;
             GameObject go = Instantiate(storageItem.Item.DroppedItemPrefab, playerPosition, Quaternion.identity);
             go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, storageItem.Amount, true);
+        }
+    }
+
+    public void DropItem(int inventorySlot, int amount) {
+        StorageItem storageItem = storage.RemoveItem(inventorySlot, amount);
+        if (storageItem != null) {
+            Vector3 playerPosition = gameObject.transform.position;
+            GameObject go = Instantiate(storageItem.Item.DroppedItemPrefab, playerPosition, Quaternion.identity);
+            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, amount, true);
         }
     }
 }

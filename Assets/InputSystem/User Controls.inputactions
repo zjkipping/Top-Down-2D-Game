@@ -476,6 +476,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "DropActiveItemStack",
+                    "type": "Button",
+                    "id": "c59dd5bb-43d1-46e1-b2a0-66be6af82ccb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "DropActiveItem",
                     "type": "Button",
                     "id": "97decd79-1217-4a43-8b22-bf37e56d2719",
@@ -649,6 +657,39 @@
                     "action": "DropActiveItem",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Button With One Modifier",
+                    "id": "fb58bbbd-65af-4d15-b9a9-a75b2d485ed9",
+                    "path": "ButtonWithOneModifier",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropActiveItemStack",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "modifier",
+                    "id": "abe19658-23a8-42cf-8bcd-3e6b95ff318c",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropActiveItemStack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "button",
+                    "id": "cee5287d-f0e4-41ce-9474-e1b1acb41e8a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropActiveItemStack",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },
