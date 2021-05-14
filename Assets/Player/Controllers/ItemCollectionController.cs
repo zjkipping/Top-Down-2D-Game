@@ -6,8 +6,9 @@ public class ItemCollectionController : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.tag == EntityTags.DroppedItem) {
-            if (Vector2.Distance(transform.position, other.transform.position) < 0.5f) {
-                AttemptItemCollection(other.GetComponent<DroppedItemController>());
+            DroppedItemController droppedItem = other.GetComponent<DroppedItemController>();
+            if (droppedItem.CanCollect && Vector2.Distance(transform.position, other.transform.position) < 0.5f) {
+                AttemptItemCollection(droppedItem);
             }
         }
     }

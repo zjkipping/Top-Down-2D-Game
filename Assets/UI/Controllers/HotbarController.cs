@@ -89,7 +89,7 @@ public class HotbarController : MonoBehaviour
     }
 
     public void UpdateActiveItemIndex() {
-        activeItemIndex = activeSlot + (inventoryController.Inventory.GetTotalSpaces() * activeRow);
+        activeItemIndex = activeSlot + (hotbarSlots.Count * activeRow);
         activeHotbotSlotChanged.Invoke();
     }
 
@@ -145,6 +145,10 @@ public class HotbarController : MonoBehaviour
         } else if (value < 0) {
             OnNextHotbarSlot();
         }
+    }
+
+    private void OnDropActiveItem() {
+        inventoryController.DropItem(activeItemIndex);
     }
 
     private void OnHotbarSlot1() {

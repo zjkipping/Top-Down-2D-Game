@@ -13,8 +13,26 @@ public class DroppedItemController : MonoBehaviour
 
     private PlayerController targetPlayer = null;
 
-    public void Initialize(int _amount) {
+    private float delayTargetingPlayerTime = 2;
+    private float currentDelay = 0;
+
+    public bool CanCollect => !delayPickup;
+    private bool delayPickup = false;
+
+    public void Initialize(ItemObject _item, int _amount, bool _delayPickup = false) {
+        item = _item;
         amount = _amount;
+        delayPickup = _delayPickup;
+        GetComponent<SpriteRenderer>().sprite = item.Sprite;
+    }
+
+    private void Update() {
+        if (delayPickup) {
+            currentDelay += Time.deltaTime;
+            if (currentDelay >= delayTargetingPlayerTime) {
+                delayPickup = false;
+            }
+        }
     }
 
     private void FixedUpdate() {
@@ -24,7 +42,7 @@ public class DroppedItemController : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
-        if (other.tag == EntityTags.Player) {
+        if (CanCollect && other.tag == EntityTags.Player) {
             InventoryController inventoryController = other.gameObject.GetComponent<InventoryController>();
             if (inventoryController.Inventory.CanItemFit(item, amount)) {
                 SetTarget(other.gameObject.GetComponent<PlayerController>());
@@ -33,7 +51,7 @@ public class DroppedItemController : MonoBehaviour
     }
 
     private void OnTriggerExit2D(Collider2D other) {
-        if (other.tag == EntityTags.Player) {
+        if (CanCollect && other.tag == EntityTags.Player) {
             RemoveTarget(other.gameObject.GetComponent<PlayerController>());
         }
     }

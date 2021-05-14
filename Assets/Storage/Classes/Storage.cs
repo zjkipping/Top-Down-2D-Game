@@ -152,6 +152,13 @@ public class Storage {
         return amount;
     }
 
+    public StorageItem RemoveItem(int space) {
+        StorageItem item = items[space];
+        items[space] = null;
+        OnStorageUpdated();
+        return item;
+    }
+
     public int ReplaceSpaceItem(ItemObject item, int amount, int space) {
         int storageAmount = amount > item.MaxAmount ? item.MaxAmount : amount;
         items[space] = new StorageItem(item, storageAmount);

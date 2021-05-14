@@ -16,4 +16,4 @@ MonoBehaviour:
   type: 0
   maxAmount: 200
   sprite: {fileID: 21300000, guid: 80940af040c475048b31e5b81fbfcde3, type: 3}
-  droppedItemPrefab: {fileID: 3558014302234266111, guid: cd1d0d8619c1634448cf5b9d78b05095, type: 3}
+  droppedItemPrefab: {fileID: 5219281655797611466, guid: da6cbf0ea370a524194298a7d7ab5784, type: 3}

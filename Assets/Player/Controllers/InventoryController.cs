@@ -20,4 +20,13 @@ public class InventoryController : MonoBehaviour
         inventoryUpdated.Invoke();
         storage.StorageUpdated += () => inventoryUpdated.Invoke();
     }
+    
+    public void DropItem(int inventorySlot) {
+        StorageItem storageItem = storage.RemoveItem(inventorySlot);
+        if (storageItem != null) {
+            Vector3 playerPosition = gameObject.transform.position;
+            GameObject go = Instantiate(storageItem.Item.DroppedItemPrefab, playerPosition, Quaternion.identity);
+            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, storageItem.Amount, true);
+        }
+    }
 }

@@ -2195,10 +2195,6 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c7759ef9-dc06-411a-b86b-7c6bfc8d01b4
-    m_ActionName: Player/DropActiveItem[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: eb8483ad-fbda-41e1-9381-30cbdb7f42c9
     m_ActionName: Hotbar/Next Hotbar Row[/Keyboard/tab]
   - m_PersistentCalls:
@@ -2249,6 +2245,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5627921c-1d67-4602-a4f3-42835bb398a4
     m_ActionName: Hotbar/Scroll Hotbar[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 97decd79-1217-4a43-8b22-bf37e56d2719
+    m_ActionName: Hotbar/DropActiveItem[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 9580968b-ab4b-4d22-80d6-2139e033a71f
@@ -3146,10 +3146,6 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: c7759ef9-dc06-411a-b86b-7c6bfc8d01b4
-    m_ActionName: Player/DropActiveItem[/Keyboard/q]
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: eb8483ad-fbda-41e1-9381-30cbdb7f42c9
     m_ActionName: Hotbar/Next Hotbar Row[/Keyboard/tab]
   - m_PersistentCalls:
@@ -3200,6 +3196,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5627921c-1d67-4602-a4f3-42835bb398a4
     m_ActionName: Hotbar/Scroll Hotbar[/Mouse/scroll/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 97decd79-1217-4a43-8b22-bf37e56d2719
+    m_ActionName: Hotbar/DropActiveItem[/Keyboard/q]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: 9580968b-ab4b-4d22-80d6-2139e033a71f

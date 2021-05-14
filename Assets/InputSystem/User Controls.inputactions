@@ -28,14 +28,6 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "DropActiveItem",
-                    "type": "Button",
-                    "id": "c7759ef9-dc06-411a-b86b-7c6bfc8d01b4",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -190,17 +182,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "90027da8-cd98-4518-bbf9-f3bd7910c618",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DropActiveItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -493,6 +474,14 @@
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "DropActiveItem",
+                    "type": "Button",
+                    "id": "97decd79-1217-4a43-8b22-bf37e56d2719",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -647,6 +636,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Previous Hotbar Slot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "39dfadbf-91d5-48a7-9f13-07127a46ad7b",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DropActiveItem",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
