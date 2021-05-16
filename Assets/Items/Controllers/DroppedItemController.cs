@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -21,56 +22,34 @@ public class DroppedItemController : MonoBehaviour
     private bool canCollect = false;
     public bool CanCollect => canCollect;
 
-    public void Initialize(ItemObject _item, int _amount, bool _delayPickup = true) {
+    public void Initialize(ItemObject _item, int _amount, Vector2 direction, bool _delayPickup = true) {
         GetComponent<SpriteRenderer>().sprite = _item.Sprite;
         item = _item;
         amount = _amount;
         delayPickup = _delayPickup;
-        StartCoroutine(ThrowAndBounceItem(new Vector2(1, 0)));
+        StartCoroutine(ThrowAndBounceItem(direction));
     }
 
     private IEnumerator ThrowAndBounceItem(Vector2 direction) {
-        Vector2 start = transform.position;
-        float distance = 1.5f;
-        float startRadius = 0.5f;
-        int bounces = 3;
-        int currentBounce = 1;
+        int currentBounce = 0;
+        float[] bounceDistance = new float[3]{ 1.25f, 0.75f, 0.5f };
+        float[] bounceTime = new float[3]{2.75f, 2.5f, 2.35f};
 
-        while(currentBounce < bounces) {
-            Vector2 end = start + (direction * (distance / currentBounce));
-            Vector2 difference = end - start;
-            float span = difference.magnitude;
-            float radius = startRadius / currentBounce;
+        while(currentBounce < 3) {
+            Vector2 start = transform.position;
+            Vector2 end = start + (direction * bounceDistance[currentBounce]);
+            Vector2 middle = start + (end - start) / 2 + (Vector2.up * bounceDistance[currentBounce]);
+            float count = 0;
 
-            // Override the radius if it's too small to bridge the points.
-            float absRadius = Mathf.Abs(radius);
-            if(span > 2f * absRadius)
-                radius = absRadius = span/2f;
+            while(count < 1f) {
+                Vector3 m1 = Vector3.Lerp(start, middle, count);
+                Vector3 m2 = Vector3.Lerp(middle, end, count);
+                transform.position = Vector3.Lerp(m1, m2, count);
 
-            Vector2 perpendicular = new Vector2(difference.y, -difference.x)/span;
-            perpendicular *= Mathf.Sign(radius) * Mathf.Sqrt(radius*radius - span*span/4f);
-
-            Vector2 center = start + difference/2f + perpendicular;
-
-            Vector2 toStart = start - center;
-            float startAngle = Mathf.Atan2(toStart.y, toStart.x);
-
-            Vector2 toEnd = end - center;
-            float endAngle = Mathf.Atan2(toEnd.y, toEnd.x);
-
-            // Choose the smaller of two angles separating the start & end
-            float travel = (endAngle - startAngle + 5f * Mathf.PI) % (2f * Mathf.PI) - Mathf.PI;
-
-            float progress = 0f;
-            while (progress < 1f) {
-                float angle = startAngle + progress * travel;
-                transform.position = center + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * absRadius;
-                progress += Time.deltaTime/0.2f;
+                count += Time.deltaTime * bounceTime[currentBounce];
                 yield return null;
             }
 
-            transform.position = end;
-            start = end;
             currentBounce++;
             yield return null;
         }

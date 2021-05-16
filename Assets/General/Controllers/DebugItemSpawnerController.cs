@@ -15,6 +15,6 @@ public class DebugItemSpawnerController : MonoBehaviour
         int amount = Random.Range(1, item.MaxAmount);
         Vector3 position = player.transform.position;
         GameObject go = Instantiate(item.DroppedItemPrefab, position, Quaternion.identity);
-        go.GetComponent<DroppedItemController>().Initialize(item, amount);
+        go.GetComponent<DroppedItemController>().Initialize(item, amount, UtilityMethods.GetRandomDirection());
     }
 }

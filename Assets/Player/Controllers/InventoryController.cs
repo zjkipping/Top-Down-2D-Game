@@ -26,7 +26,7 @@ public class InventoryController : MonoBehaviour
         if (storageItem != null) {
             Vector3 playerPosition = gameObject.transform.position;
             GameObject go = Instantiate(storageItem.Item.DroppedItemPrefab, playerPosition, Quaternion.identity);
-            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, storageItem.Amount, true);
+            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, storageItem.Amount, UtilityMethods.GetRandomDirection(), true);
         }
     }
 
@@ -35,7 +35,7 @@ public class InventoryController : MonoBehaviour
         if (storageItem != null) {
             Vector3 playerPosition = gameObject.transform.position;
             GameObject go = Instantiate(storageItem.Item.DroppedItemPrefab, playerPosition, Quaternion.identity);
-            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, amount, true);
+            go.GetComponent<DroppedItemController>().Initialize(storageItem.Item, amount, UtilityMethods.GetRandomDirection(), true);
         }
     }
 }
